@@ -6,6 +6,9 @@ Claude の会話の後ろに、夜のピクセルアートの部屋を映す Cla
 
 *A Claude Code mod that puts a night pixel-art room behind your Claude conversation. The grey cat codes while Claude works.*
 
+**▶ ブラウザで見る（インストール不要）: https://xneoxgenesisx.github.io/pixel-district/**
+全部の状態をボタンで切り替えられます。スマホでも見られます。
+
 - 動きはどれも小さく静かです（作業の邪魔をしない「ちょっと動いてる」くらい）
 - Claude のパネルや文字の色はアプリのまま。変わるのは背景だけです
 - ネットワーク通信なし・ファイル読み込みなし。シーンは mod の中に入っています
@@ -57,7 +60,7 @@ claude plugin install pixel-district@pixel-district
 python3 -m http.server 4039
 ```
 
-ブラウザで `http://localhost:4039/preview/states.html` を開くと、全部の状態をボタンで切り替えられます。
+ブラウザで `http://localhost:4039/preview/states.html` を開くと、全部の状態をボタンで切り替えられます（公開版と同じページです）。
 `?auto=1` を付けると 4 秒ごとに自動で切り替わります。
 
 ## フォルダ構成
