@@ -1,0 +1,13 @@
+{
+  "name": "pixel-district",
+  "owner": { "name": "xNEOxGENESISx" },
+  "metadata": { "description": "Pixel District, a night pixel-art room behind your Claude conversation." },
+  "plugins": [
+    {
+      "name": "pixel-district",
+      "source": "./plugin",
+      "description": "A night pixel-art room behind the conversation. The grey cat codes while Claude works; the room shows each tool, wait, finish and error.",
+      "version": "1.0.0"
+    }
+  ]
+}

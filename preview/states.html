@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pixel District states</title>
+<style>
+:root{color-scheme:dark}body{margin:0;background:#0b0922;color:#ece8ff;font:12px system-ui}
+iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
+.bar{position:fixed;left:8px;right:8px;bottom:8px;display:flex;flex-wrap:wrap;gap:6px;z-index:2}
+button{font:inherit;padding:6px 10px;border-radius:7px;border:1px solid #6652b4;background:#1c163ccc;color:#ece8ff;cursor:pointer}
+button[aria-pressed=true]{background:#6652b4}
+</style></head><body>
+<iframe id="f" src="../scene/scene.svg" title="scene"></iframe>
+<div class="bar" id="bar"></div>
+<script>
+// Each button sets the root classes the looks mod would set for that moment.
+const STATES = {
+  'idle': 'idle', 'working': 'work', 'heard you (send)': 'work m-work f-heard', 'typing (terminal only)': 'idle m-typing', 'terminal': 'work t-term p1',
+  'reading': 'work t-read p2', 'editing': 'work t-edit p3', 'web': 'work t-web p2', 'waiting for you': 'idle m-wait p2',
+  'agents': 'work agents p2', 'compacting': 'work f-compact', 'done ✓': 'idle f-done p5', 'error': 'idle f-error p2',
+  'stopped': 'idle f-stopped p1', 'sleep': 'idle m-sleep', 'tired': 'work tired p4',
+  'dawn': 'idle tod-dawn', 'day': 'idle tod-day', 'dusk': 'idle tod-dusk',
+}
+const f = document.getElementById('f'), bar = document.getElementById('bar')
+// ?x=&y=&w= zooms to a w-pixel-wide window of the 320x200 scene at (x,y), pixel-sharp
+const q = new URLSearchParams(location.search)
+// ?bar=0 hides the buttons (for screenshots)
+if (q.get('bar') === '0') bar.style.display = 'none'
+if (q.get('w')) {
+  const w = +q.get('w'), x = +(q.get('x') || 0), y = +(q.get('y') || 0), k = innerWidth / w
+  Object.assign(f.style, { inset: 'auto', left: -x * k + 'px', top: -y * k + 'px', width: 320 * k + 'px', height: 200 * k + 'px', imageRendering: 'pixelated' })
+}
+function set(name) {
+  const root = f.contentDocument && f.contentDocument.documentElement
+  if (!root) return
+  root.setAttribute('class', STATES[name])
+  // restart one-shot animations, as a redraw in the app would
+  root.getAnimations({ subtree: true }).forEach(a => { a.cancel(); a.play() })
+  for (const b of bar.children) if (b !== auto) b.setAttribute('aria-pressed', String(b.textContent === name))
+}
+// ▶ auto: step through every state, one every AUTO_MS (also ?auto=1). Pressing a state button stops it.
+const AUTO_MS = 4000
+const names = Object.keys(STATES)
+let timer = 0, current = q.get('s') || 'working'
+const auto = document.createElement('button')
+auto.textContent = '▶ auto'
+auto.setAttribute('aria-pressed', 'false')
+function show(name) { current = name; set(name) }
+function stopAuto() { clearInterval(timer); timer = 0; auto.textContent = '▶ auto'; auto.setAttribute('aria-pressed', 'false') }
+function startAuto() {
+  timer = setInterval(() => show(names[(names.indexOf(current) + 1) % names.length]), AUTO_MS)
+  auto.textContent = '❚❚ auto'
+  auto.setAttribute('aria-pressed', 'true')
+}
+auto.addEventListener('click', () => (timer ? stopAuto() : startAuto()))
+bar.appendChild(auto)
+for (const name of names) {
+  const b = document.createElement('button')
+  b.textContent = name
+  b.addEventListener('click', () => { stopAuto(); show(name) })
+  bar.appendChild(b)
+}
+f.addEventListener('load', () => {
+  show(current)
+  if (q.get('auto')) startAuto()
+})
+</script></body></html>

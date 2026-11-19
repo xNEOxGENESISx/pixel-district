@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pixel District zoom</title>
+<style>body{margin:0;background:#000;overflow:hidden}#v{position:absolute;inset:0;overflow:hidden}#v img{position:absolute;image-rendering:pixelated}</style></head>
+<body><div id="v"><img id="i" alt=""></div>
+<script>
+// ?f=scene.svg&x=240&y=78&w=80 → shows a w-pixel-wide window of the 320x200 scene starting at (x,y)
+const q = new URLSearchParams(location.search)
+const f = q.get('f') || 'scene.svg', x = +(q.get('x') || 0), y = +(q.get('y') || 0), w = +(q.get('w') || 320)
+const scale = innerWidth / w
+const img = document.getElementById('i')
+img.src = (f.startsWith('cat-') ? './' : '../scene/') + f
+img.style.width = 320 * scale + 'px'
+img.style.height = 200 * scale + 'px'
+img.style.left = -x * scale + 'px'
+img.style.top = -y * scale + 'px'
+</script></body></html>

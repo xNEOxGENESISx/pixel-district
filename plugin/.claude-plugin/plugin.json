@@ -1,0 +1,11 @@
+{
+  "name": "pixel-district",
+  "version": "1.0.0",
+  "description": "Pixel District: a night pixel-art room behind your Claude conversation. Two cats, rain and city lights; the grey cat codes while Claude works, and the room shows each tool, wait, finish and error.",
+  "author": {
+    "name": "xNEOxGENESISx"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/xNEOxGENESISx/pixel-district",
+  "types": "./types/index.d.ts"
+}
