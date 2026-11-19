@@ -27,6 +27,14 @@ claude plugin marketplace add xNEOxGENESISx/pixel-district
 claude plugin install pixel-district@pixel-district
 ```
 
+**Claude Code に頼んでもインストールできます。** 入力欄に次の一文を送るだけです（または [install.html](install.html) を添付して「これをインストールして」）。
+
+```
+https://xneoxgenesisx.github.io/pixel-district/install.html の手順で Pixel District をインストールして
+```
+
+図入りの手順書: https://xneoxgenesisx.github.io/pixel-district/install.html
+
 ほかの入れ方（クローンしてローカルから読み込む、試しに 1 セッションだけ使う）とアンインストールは
 [docs/INSTALL.md](docs/INSTALL.md) にあります。
 

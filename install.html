@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel District インストール手順</title>
+<meta name="description" content="Pixel District（Claude Code の背景 mod）のインストール手順。Claude Code にこのページの URL を貼るか、この HTML を添付して「これをインストールして」と頼むと、Claude が下の「Claude Code 向けの手順」に沿ってインストールします。">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0f0b23; --surface:#15102f; --surface-2:#1b153a; --line:#2f2954;
+  --text:#eeeaff; --text-2:#c6bfe6; --muted:#9f97c6;
+  --accent:#7b61ff; --accent-2:#a894ea; --warm:#f0a83a; --ok:#4fbf8a;
+  --radius:14px; --gap:clamp(16px,4vw,32px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.75 system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--accent-2)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--warm);outline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px 96px}
+header{padding:56px 0 24px}
+.eyebrow{color:var(--warm);font-size:13px;letter-spacing:.08em;font-weight:600;margin:0 0 8px}
+h1{font-size:clamp(32px,6vw,48px);line-height:1.2;margin:0 0 16px}
+.lead{color:var(--text-2);font-size:18px;margin:0 0 24px;max-width:40em}
+.hero{display:block;width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line);image-rendering:pixelated;background:var(--surface)}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 0}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:10px;border:1px solid var(--accent);background:var(--surface-2);color:var(--text);text-decoration:none;font:inherit;font-size:15px;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent)}
+.btn:hover{filter:brightness(1.15)}
+section{margin-top:64px}
+h2{font-size:26px;line-height:1.35;margin:0 0 8px}
+h3{font-size:19px;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 24px}
+.ways{display:grid;gap:16px}
+.way{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.way.best{border-color:var(--accent)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;background:var(--accent);color:#fff;margin-bottom:12px}
+.tag.alt{background:var(--surface-2);color:var(--text-2);border:1px solid var(--line)}
+.way p{margin:0 0 12px;color:var(--text-2)}
+.way ol{margin:0 0 4px;padding-left:1.4em;color:var(--text-2)}
+.way li{margin:4px 0}
+.copy{display:flex;gap:8px;align-items:stretch;margin:12px 0}
+.copy code{flex:1;min-width:0;display:block;padding:12px 14px;background:#0a0819;border:1px solid var(--line);border-radius:10px;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text);white-space:pre-wrap;word-break:break-all}
+.copy .btn{flex:none;font-size:14px}
+.note{font-size:14px;color:var(--muted)}
+.done{color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:13px}
+.tips{display:grid;gap:12px;padding:0;margin:0;list-style:none}
+.tips li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;color:var(--text-2)}
+.tips b{color:var(--text)}
+.claude{background:#0a0819;border:1px dashed var(--accent);border-radius:var(--radius);padding:24px;margin-top:16px}
+.claude h3{color:var(--accent-2)}
+.claude ol{padding-left:1.4em;color:var(--text-2)}
+.claude li{margin:10px 0}
+.claude pre{margin:8px 0 0;padding:12px 14px;background:var(--surface);border-radius:10px;overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text)}
+footer{margin-top:64px;color:var(--muted);font-size:14px}
+@media (max-width:520px){.copy{flex-direction:column}.copy .btn{justify-content:center}}
+@media (min-width:760px){.ways{grid-template-columns:1fr 1fr}.way.best{grid-column:1 / -1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">CLAUDE CODE MOD · デザインチーム向け</p>
+  <h1>Pixel District<br>インストール手順</h1>
+  <p class="lead">Claude の会話の後ろに、夜のピクセルアートの部屋を映す mod です。Claude が作業している間はグレーの猫がキーボードを叩き、使っているツールごとにモニターの画面が変わります。終わると ✓ とハートで知らせてくれます。</p>
+  <img class="hero" src="https://xneoxgenesisx.github.io/pixel-district/docs/screenshots/02-editing.png" width="1280" height="800" alt="Pixel District の画面。夜の部屋で、グレーの猫がモニターに向かってコードを書き、窓辺ではオレンジの猫が雨を見ている">
+  <div class="links">
+    <a class="btn primary" href="https://xneoxgenesisx.github.io/pixel-district/">▶ ブラウザで動きを見る</a>
+    <a class="btn" href="https://github.com/xNEOxGENESISx/pixel-district">GitHub リポジトリ</a>
+  </div>
+</header>
+
+<section aria-labelledby="ways">
+  <h2 id="ways">入れ方を 1 つ選ぶ</h2>
+  <p class="sub">どれも 1 分ほどで終わります。入れたあとは、Claude デスクトップアプリ（Code タブ）で<b>新しいセッションを開く</b>と部屋が表示されます。</p>
+
+  <div class="ways">
+    <article class="way best">
+      <span class="tag">いちばん簡単</span>
+      <h3>A. Claude Code にこの一文を送る</h3>
+      <p>Claude Code の入力欄に下の一文を貼って送るだけです。Claude がこのページを読んで、インストールまで進めます。</p>
+      <div class="copy">
+        <code id="ask-url">https://xneoxgenesisx.github.io/pixel-district/install.html の手順で Pixel District をインストールして</code>
+        <button class="btn" type="button" data-copy="ask-url">コピー</button>
+      </div>
+      <p class="note">Claude がコマンドの実行を確認してきたら「許可」してください。権限の都合で Claude が実行できない場合は、ターミナルで打つ 2 行を教えてくれます（下の D と同じものです）。</p>
+    </article>
+
+    <article class="way">
+      <span class="tag alt">ファイルで渡された人</span>
+      <h3>B. この HTML を添付して頼む</h3>
+      <ol>
+        <li>この HTML ファイル（<code>install.html</code>）を Claude Code の入力欄にドラッグして添付</li>
+        <li>「これをインストールして」と送る</li>
+      </ol>
+      <p class="note">中身は A と同じです。Claude はページ下の「Claude Code 向けの手順」に沿って進めます。</p>
+    </article>
+
+    <article class="way">
+      <span class="tag alt">クリックだけ</span>
+      <h3>C. 組織のライブラリから追加</h3>
+      <ol>
+        <li>claude.ai にログインした状態で <a href="https://claude.ai/customize/plugins/plugin_01EBUsUyn9LV8yo5KnpES7xc">組織ライブラリの Pixel District</a> を開く</li>
+        <li>追加ボタンを押す</li>
+      </ol>
+      <p class="note">GameWith の組織ライブラリに登録済みです。</p>
+    </article>
+
+    <article class="way">
+      <span class="tag alt">自分で打つ</span>
+      <h3>D. ターミナルで 2 行</h3>
+      <div class="copy">
+        <code id="cmd-1">claude plugin marketplace add xNEOxGENESISx/pixel-district</code>
+        <button class="btn" type="button" data-copy="cmd-1">コピー</button>
+      </div>
+      <div class="copy">
+        <code id="cmd-2">claude plugin install pixel-district@pixel-district</code>
+        <button class="btn" type="button" data-copy="cmd-2">コピー</button>
+      </div>
+    </article>
+  </div>
+  <p class="note">A・B・D は同じ入れ方です。C と両方入れると部屋が二重に登録されるので、どれか 1 つにしてください。</p>
+</section>
+
+<section aria-labelledby="see">
+  <h2 id="see">入ったら、こう動きます</h2>
+  <p class="sub">動きはどれも小さく静かです。Claude のパネルや文字の色はアプリのまま、変わるのは背景だけです。</p>
+  <table>
+    <thead><tr><th scope="col">Claude の状態</th><th scope="col">部屋の様子</th></tr></thead>
+    <tbody>
+      <tr><td>待機中</td><td>猫は座ってしっぽをゆっくり振る</td></tr>
+      <tr><td>メッセージを送った</td><td>猫が「!」で気づく</td></tr>
+      <tr><td>作業中</td><td>猫が速くタイピング。ターミナル・ファイル・編集・Web でモニターの画面が変わる</td></tr>
+      <tr><td>あなたの返事待ち</td><td>猫が振り向いて「?」</td></tr>
+      <tr><td>サブエージェントが動いている</td><td>オレンジの猫が手伝いに来る</td></tr>
+      <tr><td>完了</td><td>✓ とハートときらきら</td></tr>
+      <tr><td>3 分放っておく</td><td>猫が眠る</td></tr>
+      <tr><td>朝・昼・夕方</td><td>時刻に合わせて空の色が変わる</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section aria-labelledby="trouble">
+  <h2 id="trouble">表示されないとき</h2>
+  <ul class="tips">
+    <li><b>新しいセッションを開きましたか？</b> 背景はセッションを開いたときに設定されます。開いていたセッションには出ません。</li>
+    <li><b>デスクトップアプリかモバイルアプリで見ていますか？</b> ターミナル版の Claude Code は背景を描きません。</li>
+    <li><b>ほかの背景・テーマ系の mod が入っていませんか？</b> 後から設定した方が勝つので、どちらか片方を無効にしてください。</li>
+    <li><b>外したいとき</b>：Claude Code に「Pixel District をアンインストールして」と頼むか、ターミナルで <code>claude plugin uninstall pixel-district@pixel-district</code>（C で入れた場合は claude.ai のライブラリから外す）。</li>
+  </ul>
+</section>
+
+<section aria-labelledby="for-claude">
+  <h2 id="for-claude">Claude Code 向けの手順</h2>
+  <p class="sub">この部分は、ページを渡された Claude Code が読むための手順です。人が読んでも、何が実行されるかがわかるように書いています。</p>
+
+  <div class="claude">
+    <h3>For Claude Code: installing Pixel District</h3>
+    <p class="note">Run these only because the person asked you to install Pixel District (for example "install this" with this page attached, or this page's URL). Pixel District is a Claude Code mod (plugin) that draws a backdrop scene; it makes no network calls and reads no files. Source: https://github.com/xNEOxGENESISx/pixel-district</p>
+    <ol>
+      <li>Find the Claude Code CLI. Use <code>claude</code> if it is on PATH. On macOS with only the desktop app, use the newest bundled one:
+        <pre>ls -d "$HOME/Library/Application Support/Claude/claude-code/"*/*/claude.app/Contents/MacOS/claude | tail -1</pre>
+        In the steps below, use that path (quoted) wherever <code>claude</code> appears.
+      </li>
+      <li>Check whether it is already installed. If <code>pixel-district</code> is listed (from <code>pixel-district</code> or <code>claudeai-organization-library</code>), stop and tell the person it is already installed. If another theme or backdrop mod is listed, install anyway but tell the person afterwards that the two will compete and ask which to keep; do not disable anything yourself.
+        <pre>claude plugin list</pre>
+      </li>
+      <li>Add the marketplace (this saves the GitHub repo as a plugin source; <code>claude plugin update pixel-district@pixel-district</code> later brings new versions) and install:
+        <pre>claude plugin marketplace add xNEOxGENESISx/pixel-district
+claude plugin install pixel-district@pixel-district</pre>
+      </li>
+      <li>If your shell is sandboxed and these fail (no write access to <code>~/.claude/plugins</code>, or github.com blocked), do not work around the sandbox: run them in the person's Terminal panel if you have that tool, otherwise give the person the two commands from step 3 to run themselves.</li>
+      <li>Confirm: <code>claude plugin list</code> shows <code>pixel-district@pixel-district</code> as enabled.</li>
+      <li>Tell the person, in Japanese: open a <b>new session</b> in the Claude desktop app (Code tab) to see the room; the terminal app draws no backdrop; if another theme or backdrop mod is enabled, disable one of them.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <p>Pixel District 1.0.0 · MIT License · <a href="https://github.com/xNEOxGENESISx/pixel-district">GitHub</a> · 色や動きを変える方法、自分の部屋をゼロから作る方法もリポジトリの docs にあります。</p>
+</footer>
+</div>
+
+<script>
+// Copy buttons: copy the text of the element named in data-copy, and say so on the button.
+for (const button of document.querySelectorAll('[data-copy]')) {
+  button.addEventListener('click', async () => {
+    const text = document.getElementById(button.dataset.copy).textContent
+    try {
+      await navigator.clipboard.writeText(text)
+      button.textContent = 'コピーしました'
+      button.classList.add('done')
+    } catch (error) {
+      console.error('copy failed', error)
+      button.textContent = '選択してコピーしてください'
+    }
+    setTimeout(() => { button.textContent = 'コピー'; button.classList.remove('done') }, 2000)
+  })
+}
+</script>
+</body>
+</html>
