@@ -80,6 +80,8 @@ plugin/              mod 本体（これをインストールする）
   tests/               mod のテスト
 scene/scene.svg      生成されたシーン（プレビュー用）
 tools/gen_scene.py   部屋をコードで描くジェネレーター（Python 3、追加ライブラリ不要）
+tools/build_install.py  install.html にシーンを埋め込む（gen_scene.py が自動で呼ぶ）
+install.html         配布用の手順書。画像も中に入っていて、この 1 ファイルだけで見られる
 preview/             状態切り替え・拡大表示のプレビューページ
 docs/                インストール・カスタマイズ・ゼロから作る方法
 ```
